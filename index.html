@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>研究ノート閲覧システム</title>
+
+<style>
+
+body{
+    background-color:#111;
+    color:white;
+    font-family:sans-serif;
+    text-align:center;
+    padding:30px;
+}
+
+.board{
+    width:450px;
+    margin:20px auto;
+    padding:20px;
+    background:white;
+    color:black;
+    border:5px solid gray;
+    text-align:left;
+}
+
+input{
+    padding:10px;
+    font-size:18px;
+}
+
+button{
+    padding:10px 20px;
+    font-size:18px;
+    margin-top:10px;
+}
+
+table{
+    margin:auto;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+td,th{
+    border:1px solid white;
+    padding:10px;
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>研究ノート閲覧システム</h1>
+
+<p>
+研究ノートを閲覧するには<br>
+研究室共通パスワードを入力してください。
+</p>
+
+<p>
+ヒント：研究室のホワイトボードを確認してください。
+</p>
+
+<div class="board">
+
+<h3>研究室連絡事項</h3>
+
+<ul>
+<li>木曜日ゼミ</li>
+<li>実験室清掃</li>
+<li>試薬発注</li>
+</ul>
+
+<hr>
+
+<p><strong>共通PW</strong></p>
+
+<h2>physicslab</h2>
+
+</div>
+
+<input
+type="text"
+id="password"
+placeholder="パスワード">
+
+<br><br>
+
+<button onclick="checkPassword()">
+ログイン
+</button>
+
+<p id="message"></p>
+
+<script>
+
+function checkPassword(){
+
+    const password =
+        document.getElementById("password").value;
+
+    if(password === "physicslab"){
+
+        document.body.innerHTML = `
+
+        <h1>研究ノート検索</h1>
+
+        <p>
+        探しているのは<br>
+        <strong>既に提出された4年生の研究ノート</strong>です。
+        </p>
+
+        <h2>研究室メンバー一覧</h2>
+
+        <table>
+            <tr>
+                <th>学年</th>
+                <th>氏名</th>
+            </tr>
+            <tr>
+                <td>M2</td>
+                <td>佐藤</td>
+            </tr>
+            <tr>
+                <td>M2</td>
+                <td>高橋</td>
+            </tr>
+            <tr>
+                <td>M1</td>
+                <td>鈴木</td>
+            </tr>
+            <tr>
+                <td>B4</td>
+                <td>田中</td>
+            </tr>
+            <tr>
+                <td>B4</td>
+                <td>中村</td>
+            </tr>
+        </table>
+
+        <h2>卒業研究提出状況</h2>
+
+        <table>
+            <tr>
+                <th>番号</th>
+                <th>氏名</th>
+                <th>状況</th>
+            </tr>
+            <tr>
+                <td>314</td>
+                <td>佐藤</td>
+                <td>提出済み</td>
+            </tr>
+            <tr>
+                <td>315</td>
+                <td>高橋</td>
+                <td>提出済み</td>
+            </tr>
+            <tr>
+                <td>316</td>
+                <td>鈴木</td>
+                <td>確認中</td>
+            </tr>
+            <tr>
+                <td>317</td>
+                <td>田中</td>
+                <td>提出済み</td>
+            </tr>
+            <tr>
+                <td>318</td>
+                <td>中村</td>
+                <td>確認中</td>
+            </tr>
+        </table>
+
+        <br>
+
+        <input
+        type="text"
+        id="answer"
+        placeholder="研究ノート番号">
+
+        <br><br>
+
+        <button onclick="secondPuzzle()">
+        検索
+        </button>
+
+        <p id="result"></p>
+
+        `;
+
+    }else{
+
+        document.getElementById("message").innerText =
+        "パスワードが違います。";
+
+    }
+
+}
+
+function secondPuzzle(){
+
+    const answer =
+        document.getElementById("answer").value;
+
+    if(answer === "317"){
+
+        document.body.innerHTML = `
+
+        <h1>研究ノート閲覧成功</h1>
+
+        <h2>研究ノート No.317</h2>
+
+        <hr>
+
+        <p>
+        卒業研究の最終版が表示されました。
+        </p>
+
+        <p>
+        おめでとうございます！
+        </p>
+
+        <h2>GAME CLEAR</h2>
+
+        `;
+
+    }else{
+
+        document.getElementById("result").innerText =
+        "該当する研究ノートが見つかりません。";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
